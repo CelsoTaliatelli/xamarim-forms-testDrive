@@ -21,7 +21,7 @@ namespace TesteDrive.ViewModels
             {
                 veiculoSelecionado = value;
                 if(value != null)
-                MessagingCenter.Send(veiculoSelecionado, "Selecionado");
+                MessagingCenter.Send(veiculoSelecionado, "VeiculoSelecionado");
             }
         }
         public ListagemViewModel()

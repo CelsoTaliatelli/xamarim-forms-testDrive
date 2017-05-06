@@ -30,7 +30,7 @@ namespace TesteDrive.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            MessagingCenter.Subscribe<Veiculo>(this, "Selecionado", 
+            MessagingCenter.Subscribe<Veiculo>(this, "VeiculoSelecionado", 
                 (msg) => 
                 {
                     Navigation.PushAsync(new DetalheView(msg));
@@ -40,7 +40,7 @@ namespace TesteDrive.Views
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            MessagingCenter.Unsubscribe<Veiculo>(this, "Selecionado");
+            MessagingCenter.Unsubscribe<Veiculo>(this, "VeiculoSelecionado");
               
         }
     }
