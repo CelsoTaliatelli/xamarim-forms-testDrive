@@ -8,6 +8,7 @@ namespace TesteDrive.ViewModels
 {
     public class ListagemViewModel
     {
+        const string URL_GET_VEICULOS = "http://aluracar.herokuapp.com/";
         public List<Veiculo> Veiculos { get; set; }
 
         Veiculo veiculoSelecionado;
@@ -26,7 +27,13 @@ namespace TesteDrive.ViewModels
         }
         public ListagemViewModel()
         {
-            this.Veiculos = new ListagemVeiculos().Veiculos;
+            this.Veiculos = new List<Veiculo>();
         }
+
+        public void GetVeiculos()
+        {
+            HttpClient cliente = new HttpClient();
+        }
+        
     }
 }
