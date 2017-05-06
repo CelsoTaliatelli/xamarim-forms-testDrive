@@ -22,9 +22,24 @@ namespace TesteDrive.Views
             this.BindingContext = this.viewModel;
 		}
 
-        private void Button_Clicked(object sender, EventArgs e)
+        /*private void Button_Clicked(object sender, EventArgs e)
         {
             DisplayAlert("Agendamento", "Nome:" + viewModel.Agendamento.Nome, "Ok");
+        }*/
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            MessagingCenter.Subscribe<Agendamento>(this, "Agendamento",(msg) =>
+            {
+                DisplayAlert("Agendamento", "Nome:" + viewModel.Agendamento.Nome, "Ok");
+            });
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MessagingCenter.Unsubscribe<Agendamento>(this, "Agendamento");
         }
     }
 }
