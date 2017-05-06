@@ -19,13 +19,13 @@ namespace TesteDrive.Views
 
 		}
 
-        private void ListViewVeiculos_ItemTapped(object sender, ItemTappedEventArgs e)
+       /* private void ListViewVeiculos_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             var veiculo = (Veiculo)e.Item;
 
             Navigation.PushAsync(new DetalheView(veiculo));
 
-        }
+        }*/
 
         protected override void OnAppearing()
         {
