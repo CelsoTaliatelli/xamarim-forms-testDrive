@@ -9,6 +9,18 @@ namespace TesteDrive.ViewModels
     {
         public List<Veiculo> Veiculos { get; set; }
 
+        Veiculo veiculoSelecionado;
+        public Veiculo VeiculoSelecionado
+        {
+            get
+            {
+                return veiculoSelecionado;
+            }
+            set
+            {
+                veiculoSelecionado = value;
+            }
+        }
         public ListagemViewModel()
         {
             this.Veiculos = new ListagemVeiculos().Veiculos;
