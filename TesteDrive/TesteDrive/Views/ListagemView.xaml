@@ -5,9 +5,6 @@
              x:Class="TesteDrive.Views.ListagemView"
              xmlns:vm="clr-namespace:TesteDrive.ViewModels"
              Title="Test Drive">
-    <ContentPage.BindingContext>
-        <vm:ListagemViewModel></vm:ListagemViewModel>
-    </ContentPage.BindingContext>
     <ListView x:Name="ListViewVeiculos" ItemsSource="{Binding Veiculos}" Margin="25"
              SelectedItem="{Binding VeiculoSelecionado}">
         <ListView.ItemTemplate>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TesteDrive.Models;
+using TesteDrive.ViewModels;
 using Xamarin.Forms;
 
 namespace TesteDrive.Views
@@ -11,10 +12,12 @@ namespace TesteDrive.Views
     
 	public partial class ListagemView : ContentPage
 	{
-        
-		public ListagemView()
+        public ListagemViewModel ViewModel { get; set; }
+        public ListagemView()
 		{
 			InitializeComponent();
+            this.ViewModel = new ListagemViewModel();
+            this.BindingContext = this.ViewModel;
             
 
 		}
@@ -27,7 +30,7 @@ namespace TesteDrive.Views
 
         }*/
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
             MessagingCenter.Subscribe<Veiculo>(this, "VeiculoSelecionado", 
@@ -35,6 +38,8 @@ namespace TesteDrive.Views
                 {
                     Navigation.PushAsync(new DetalheView(msg));
                 });
+
+            await this.ViewModel.GetVeiculos();
         }
 
         protected override void OnDisappearing()

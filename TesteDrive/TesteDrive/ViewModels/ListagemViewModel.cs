@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using TesteDrive.Models;
 using Xamarin.Forms;
 
@@ -30,9 +32,11 @@ namespace TesteDrive.ViewModels
             this.Veiculos = new List<Veiculo>();
         }
 
-        public void GetVeiculos()
+        public async Task GetVeiculos()
         {
             HttpClient cliente = new HttpClient();
+           var resultado = await cliente.GetStringAsync(URL_GET_VEICULOS);
+
         }
         
     }
