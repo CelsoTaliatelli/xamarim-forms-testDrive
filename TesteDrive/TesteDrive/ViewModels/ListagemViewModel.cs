@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ namespace TesteDrive.ViewModels
     public class ListagemViewModel
     {
         const string URL_GET_VEICULOS = "http://aluracar.herokuapp.com/";
-        public List<Veiculo> Veiculos { get; set; }
+        public ObservableCollection<Veiculo> Veiculos { get; set; }
 
         Veiculo veiculoSelecionado;
         public Veiculo VeiculoSelecionado
@@ -30,7 +31,7 @@ namespace TesteDrive.ViewModels
         }
         public ListagemViewModel()
         {
-            this.Veiculos = new List<Veiculo>();
+            this.Veiculos = new ObservableCollection<Veiculo>();
         }
 
         public async Task GetVeiculos()
@@ -38,6 +39,15 @@ namespace TesteDrive.ViewModels
             HttpClient cliente = new HttpClient();
            var resultado = await cliente.GetStringAsync(URL_GET_VEICULOS);
            var veiculosJson = JsonConvert.DeserializeObject<VeiculoJson[]>(resultado);
+
+            foreach (var veiculoJson in veiculosJson)
+            {
+                this.Veiculos.Add(new Veiculo
+                {
+                    Nome = veiculoJson.nome,
+                    Preco = veiculoJson.preco
+                });
+            } 
 
         }
         
