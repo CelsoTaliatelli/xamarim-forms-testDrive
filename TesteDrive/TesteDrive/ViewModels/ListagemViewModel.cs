@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace TesteDrive.ViewModels
 {
-    public class ListagemViewModel
+    public class ListagemViewModel : BaseViewModel
     {
         const string URL_GET_VEICULOS = "http://aluracar.herokuapp.com/";
         public ObservableCollection<Veiculo> Veiculos { get; set; }
@@ -29,6 +29,20 @@ namespace TesteDrive.ViewModels
                 MessagingCenter.Send(veiculoSelecionado, "VeiculoSelecionado");
             }
         }
+
+        private bool aguarde;
+        public bool Aguarde
+        {
+            get
+            {
+                return aguarde;
+            }
+            set
+            {
+                aguarde = value;
+                OnPropertyChanged();
+            }
+        }
         public ListagemViewModel()
         {
             this.Veiculos = new ObservableCollection<Veiculo>();
@@ -36,6 +50,7 @@ namespace TesteDrive.ViewModels
 
         public async Task GetVeiculos()
         {
+            Aguarde = true;
             HttpClient cliente = new HttpClient();
            var resultado = await cliente.GetStringAsync(URL_GET_VEICULOS);
            var veiculosJson = JsonConvert.DeserializeObject<VeiculoJson[]>(resultado);
@@ -47,8 +62,8 @@ namespace TesteDrive.ViewModels
                     Nome = veiculoJson.nome,
                     Preco = veiculoJson.preco
                 });
-            } 
-
+            }
+            Aguarde = false;
         }
         
     }

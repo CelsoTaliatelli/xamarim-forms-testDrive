@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace TesteDrive.ViewModels
 {
-    public class DetalheViewModel : INotifyPropertyChanged
+    public class DetalheViewModel : BaseViewModel
     {
         public Veiculo Veiculo { get; set; }
         public bool TemFreiosABS
@@ -119,13 +119,13 @@ namespace TesteDrive.ViewModels
             });
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        /*public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged([CallerMemberName]string name = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        public ICommand ProximoCommand { get; set; }
+        public ICommand ProximoCommand { get; set; }*/
     }
 }
